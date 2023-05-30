@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 const Navbar = () => {
   const { data: session } = useSession();
    const [providers, setProviders] = useState(null)
@@ -30,9 +31,9 @@ const Navbar = () => {
             <Link href='/profile'><Image src={session?.user.image} width={37} height={37} className='rounded-full' alt='profile'/></Link>
           </div>
           </>):(<>
-          {providers && Object.values(providers).map((provider)=>{
-              <button type='button'  key='provider.name' onClick={()=>{signIn(provider.id)}} className="">Sign In</button>
-          })}
+          {providers && Object.values(providers).map((provider)=>(
+              <button type='button'  key={provider.name} onClick={()=>{signIn(provider.id)}} className="button">Sign In</button>
+          ))}
           </>)}
         </div>
       </div>
