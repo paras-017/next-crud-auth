@@ -5,3 +5,16 @@
 .button{
   @apply bg-indigo-600 px-4 py-2 rounded text-white hover:bg-indigo-500 text-sm
 }
+/* FORM */
+.main-form{
+  @apply bg-white shadow rounded px-8 pt-6 pb-8 mb-4
+}
+.input-field{
+  @apply shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none 
+}
+.label-form{
+  @apply block text-gray-700 text-sm font-bold mb-2
+}
+.button-form{
+  @apply flex items-center justify-end
+}
