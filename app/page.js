@@ -1,10 +1,16 @@
 'use client'
 import React from 'react'
 import { useSession } from "next-auth/react";
+import Feed from '@components/Feed';
 const page = () => {
   const { data: session } = useSession();
   return (
-   <section className=' w-full h-screen bg-purple-50 flex justify-center' >
+    <>
+   {session?.user ? (<>
+    <Feed/>
+   </>
+   ) : (<>
+    <section className=' w-full h-screen bg-purple-50 flex justify-center' >
     <div className='mt-[15rem] text-center w-[32rem] '>
     <h1 className='italic font-bold font-mono text-5xl leading-tight"' >Daily Task of day</h1>
     <p className=' font-semibold text-base text-gray-700 my-5'>we makes it easier for a team or individiual to  plan their work by using our app</p>
@@ -14,6 +20,9 @@ const page = () => {
     </div>
     </div>
    </section>
+   </>
+   )}
+    </>
   )
 }
 
