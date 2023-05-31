@@ -1,9 +1,9 @@
 'use client'
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-
+import { useRouter } from "next/navigation";
     const Feed = () => {
+      const router = useRouter();
     const [myNotes, setMyNotes] = useState([])
     const { data: session } = useSession();
     useEffect(() => {
@@ -16,8 +16,29 @@ import React, { useEffect, useState } from 'react'
       if (session?.user.id) fetchNotes();
     }, [session?.user.id])
     
-const handleEdit =()=>{}
-const handleDelete =()=>{}  
+const handleEdit =(id)=>{
+  router.push(`/edit-note?id=${id}`);
+}
+
+const handleDelete = async (id) => {
+  const hasConfirmed = confirm(
+    "Are you sure you want to delete this prompt?"
+  );
+
+  if (hasConfirmed) {
+    try {
+      await fetch(`/api/userNotes/${session?.user.id}/${id}`, {
+        method: "DELETE",
+      });
+
+      const filteredPosts = myNotes.filter((item) => item._id !== id);
+
+      setMyNotes(filteredPosts);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 
 
   return (
@@ -42,8 +63,8 @@ const handleDelete =()=>{}
                     <td className="whitespace-nowrap px-6 py-4">{note.title}</td>
                     <td className="whitespace-nowrap px-6 py-4">{note.description}</td>
                     <td className="whitespace-nowrap px-6 py-4 flex gap-2">
-            <button  type='button' className="action-edit-btn" onClick={handleEdit}>Edit</button>
-                    <button className='action-delete-btn' onClick={handleDelete}>Delete</button>
+                    <button  type='button' className="action-edit-btn" onClick={()=>handleEdit(note._id)}>Edit</button>
+                    <button className='action-delete-btn' onClick={()=>handleDelete(note._id)}>Delete</button>
                     </td>
                 </tr>
               ))}

@@ -11,7 +11,6 @@ export async function GET(request, {params}) {
   }
 }
 export async function POST(request){
-  console.log('hello world')
     const { creator, title, description } = await request.json();
 
     try {
