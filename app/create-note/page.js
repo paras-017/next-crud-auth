@@ -11,7 +11,6 @@ const page = () => {
   
   const createNote =async (e) => {
     e.preventDefault()
-    console.log('create Note function')
     try {                          
       const response = await fetch(`/api/users/${session?.user.id}/notes`, {
         method: "POST",

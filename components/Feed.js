@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
       const fetchNotes = async()=>{
         const response = await fetch(`/api/users/${session?.user.id}/notes`);
         const data = await response.json();
-        console.log(data)
         setMyNotes(data)
       }
       if (session?.user.id) fetchNotes();
@@ -35,7 +34,6 @@ const handleDelete = async (id) => {
 
       setMyNotes(filteredPosts);
     } catch (error) {
-      console.log(error);
     }
   }
 };
