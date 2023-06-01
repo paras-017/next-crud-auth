@@ -12,7 +12,7 @@ const page = () => {
    ) : (<>
     <section className=' w-full h-screen bg-purple-50 flex justify-center' >
       <div className='mt-[15rem] text-center w-[32rem] '>
-      <h1 className='italic font-bold font-mono text-5xl leading-tight"' >Daily Task of day</h1>
+      <h1 className='italic font-bold font-mono text-5xl leading-tight"' >Daily Task of day hello </h1>
       <p className=' font-semibold text-base text-gray-700 my-5'>we makes it easier for a team or individiual to  plan their work by using our app</p>
       <div>
       <p className='font-bold  text-4xl leading-tight"'>To get started, Please SignIn</p>
